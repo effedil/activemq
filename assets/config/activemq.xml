@@ -59,7 +59,7 @@
             </policyMap>
         </destinationPolicy>
 
-
+	{{ACTIVEMQ_NETWORK_CONNECTIONS}}
         <!--
             The managementContext is used to configure how ActiveMQ is exposed in
             JMX. By default, ActiveMQ uses the MBean server that is started by
@@ -101,7 +101,7 @@
                 </tempUsage>
             </systemUsage>
         </systemUsage>
-
+	
         <!--
             The transport connectors expose ActiveMQ over a given protocol to
             clients and other brokers. For more information, see:
@@ -126,23 +126,8 @@
 
 	<plugins>
       		<!--  use JAAS to authenticate using the login.config file on the classpath to configure JAAS -->
-      		<jaasAuthenticationPlugin configuration="activemq-domain" />
-		<authorizationPlugin>
-        		<map>
-          			<authorizationMap>
-            				<authorizationEntries>
-              					<authorizationEntry queue=">" read="admins,reads,writes,owners" write="admins,writes,owners" admin="admins,owners" />
-              					<authorizationEntry topic=">" read="admins,reads,writes,owners" write="admins,writes,owners" admin="admins,owners" />
-              					<authorizationEntry topic="ActiveMQ.Advisory.>" read="admins,reads,writes,owners" write="admins,reads,writes,owners" admin="admins,reads,writes,owners"/>
-            				</authorizationEntries>
-             
-            				<!-- let's assign roles to temporary destinations. comment this entry if we don't want any roles assigned to temp destinations  -->
-            				<tempDestinationAuthorizationEntry>  
-              					<tempDestinationAuthorizationEntry read="tempDestinationAdmins" write="tempDestinationAdmins" admin="tempDestinationAdmins"/>
-           				</tempDestinationAuthorizationEntry>               
-          			</authorizationMap>
-        		</map>
-      		</authorizationPlugin>
+               <jaasAuthenticationPlugin configuration="{{ACTIVEMQ_JAAS_CONFIGURATION}}" />
+               {{ACTIVEMQ_AUTHORIZATION_PLUGIN}}
 	</plugins>
 
     </broker>
