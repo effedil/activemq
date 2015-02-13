@@ -1,0 +1,13 @@
+<authorizationPlugin>
+        <map>
+             <cachedLDAPAuthorizationMap
+                        connectionURL="{{LDAP_CONNECTION_URL}}"
+                        connectionUsername="{{LDAP_CONNECTION_USERNAME}}"
+                        connectionPassword="{{LDAP_CONNECTION_PASSWORD}}"
+                        queueSearchBase="ou=Queue,ou=Destination,ou=ActiveMQ,{{ACTIVEMQ_LDAP_DOMAIN}}"
+                        topicSearchBase="ou=Topic,ou=Destination,ou=ActiveMQ,{{ACTIVEMQ_LDAP_DOMAIN}}"
+                        tempSearchBase="ou=Temp,ou=Destination,ou=ActiveMQ,{{ACTIVEMQ_LDAP_DOMAIN}}"
+                        refreshInterval="300000"
+                        legacyGroupMapping="false" />
+        </map>
+</authorizationPlugin>
