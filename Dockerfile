@@ -1,4 +1,4 @@
-#ActiveMQ 5.10.0
+#ActiveMQ 5.10.1
 
 FROM webcenter/openjdk:jre-8-headless
 MAINTAINER Davegraziosi <davide.graziosi@exprivia.it>
