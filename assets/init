@@ -122,7 +122,11 @@ if [ "${ACTIVEMQ_STATIC_NETWORKS}X" != "X" ]; then
 	NETWORKS=$(echo ${ACTIVEMQ_STATIC_NETWORKS} | tr "," "\n")
 	for x in ${NETWORKS}
 	do
-         ACTIVEMQ_NETWORK_CONNECTIONS="${ACTIVEMQ_NETWORK_CONNECTIONS}<networkConnector uri=\"static:(tcp://${x})\" duplex=\"true\" dynamicOnly=\"true\" />"
+	  if [ "${ACTIVEMQ_STATIC_NETWORKS_AUTH}X" != "X" ]; then
+          	ACTIVEMQ_NETWORK_CONNECTIONS="${ACTIVEMQ_NETWORK_CONNECTIONS}<networkConnector uri=\"static:(tcp://${x})\" duplex=\"true\" dynamicOnly=\"true\" userName=\"${ACTIVEMQ_STATIC_NETWORKS_AUTH}\" password=\"${ACTIVEMQ_STATIC_NETWORKS_PASSWORD}\" />"
+	  else 
+		ACTIVEMQ_NETWORK_CONNECTIONS="${ACTIVEMQ_NETWORK_CONNECTIONS}<networkConnector uri=\"static:(tcp://${x})\" duplex=\"true\" dynamicOnly=\"true\" />"
+	  fi
 	done
 fi
 
